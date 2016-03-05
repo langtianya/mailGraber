@@ -5,6 +5,7 @@
  */
 package com.wangzhe.service.impl;
 
+import com.wangzhe.beans.ConfigParam;
 import com.wangzhe.beans.ProxyBean;
 import com.wangzhe.service.MailAddrGraber;
 import com.wangzhe.ui.HomeController;
@@ -37,7 +38,7 @@ public class FubuEmailCatch extends MailAddrGraber {
     public static boolean isStop = false;
 
     public FubuEmailCatch() {
-
+        siteUrl="www.fubu.com";
     }
 
     @Override
@@ -323,7 +324,7 @@ public class FubuEmailCatch extends MailAddrGraber {
             }
             //([^:：@，,\s\]]*@.*.<em>com)
             List<String> urlList = RegexUtil.getList("title\"\\s*href=\"([^\"]*)", webpageContent);
-            getAndSaveEmail();
+            getEmailFromWebpageContent();
             log.info("正则采集第" + (i + 1) + "页");
             for (int j = 1; j <= urlList.size(); j++) {
 
@@ -333,7 +334,7 @@ public class FubuEmailCatch extends MailAddrGraber {
                 if (webpageContent == null) {
                     continue;
                 }
-                getAndSaveEmail();
+                getEmailFromWebpageContent();
             }
         }
 
@@ -424,7 +425,7 @@ System.out.println(localeList[i].getDisplayCountry()+"="+localeList[i].getCountr
     }
 
     @Override
-    protected String[] getMailAddr(String[] urls, String[] keywords) {
+    protected String[] getMailAddr(ConfigParam cp) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

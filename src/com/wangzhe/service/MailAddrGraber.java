@@ -35,6 +35,10 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
     public static boolean isStop = false;
 //    private static MailAddrGraber instance;
     private static final int CLICK_SUB_URL_DEEP = 3;
+    /**
+     * 报错邮箱的文件名
+     */
+    protected String fileName = getClass().getSimpleName() + "的邮箱列表";
 
     public MailAddrGraber() {
     }
@@ -73,7 +77,7 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
         long time1 = System.currentTimeMillis();
         List<ProxyBean> successProxyList = new ArrayList<>();
         log.info("挖掘中....2" + proxyList.size());
-        String[] mailAddrs = getMailAddr(cp.getGrabUrls(), cp.getKeywords());
+        String[] mailAddrs = getMailAddr(cp);
 
         //遍历代理
       /*  for (int i = 0; i < proxyList.size(); i++) {
@@ -102,26 +106,34 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
 
     /**
      *
-     * @param urls
-     * @param keywords
+     * @param cp
      * @return mail address
      */
-    protected abstract String[] getMailAddr(String[] urls, String[] keywords);
+    protected abstract String[] getMailAddr(ConfigParam cp);
 
     /**
      * 获取并保存邮箱
+     *
+     * @return
      */
-    protected void getAndSaveEmail() {
+    protected List<String> getEmailFromWebpageContent() {
         //([^:：@，,\s>\]\"']{2,}@.*.com)//email\\]([^\\[]*)\\[/emai
         webpageContent = webpageContent.replaceAll("<em>", "");//(<[^>(?:email)]*?>)
         webpageContent = webpageContent.replaceAll("</em>", "");
-        List<String> emails = RegexUtil.getList("([a-z0-9A-Z_]{2,}@[^>]*.com)", webpageContent);
+//        List<String> emails = ;
+        return RegexUtil.getList("([a-z0-9A-Z_]{2,}@[^>]*.com)", webpageContent);
+    }
+
+    protected void writeToTxtFile(List<String> emails) {
+        writeToTxtFile(emails, fileName);
+    }
+
+    protected void writeToTxtFile(List<String> emails, String fileName) {
         if (emails != null) {
             final List<String> repeatEmail = ContainerUtils.removeRepeat(emails);
-            log.info("获得邮箱数量" + repeatEmail.size() + "邮箱是：" + repeatEmail);
-            FileUtils.writeToTxtFile("物流邮箱", repeatEmail);
+            log.info("即将保存的邮箱数量" + repeatEmail.size() + "邮箱是：" + repeatEmail);
+            FileUtils.writeToTxtFile(fileName, repeatEmail);
         }
-
     }
 
     @Override

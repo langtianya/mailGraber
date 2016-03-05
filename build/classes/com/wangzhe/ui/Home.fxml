@@ -37,14 +37,19 @@
                                         <Label prefHeight="22.0" prefWidth="61.0" text="秒之间随机" />
                                     </children>
                                 </HBox>
-                                <TextField fx:id="tf_voteUrl" promptText="填写想挖掘邮箱的网址" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <TextField fx:id="tf_grabUrl" promptText="填写想挖掘邮箱的网址" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                 <Label text="   挖掘网址：" GridPane.rowIndex="3" />
                                 <Label prefHeight="15.0" prefWidth="75.0" text="   关键词：" GridPane.rowIndex="4" />
-                                <TextField fx:id="tf_voteIds" promptText="填写公司名包含的关键词,多个时,隔开" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                <Button mnemonicParsing="false" onAction="#startVote" prefHeight="35.0" prefWidth="103.0" text="开始抓取" /><Button fx:id="fx_startVoteButtom" mnemonicParsing="false" onAction="#startVote" prefHeight="35.0" prefWidth="103.0" text="开始挖掘" /><Button fx:id="fxstopVoteButtom" disable="true" mnemonicParsing="false" onAction="#stopVote" prefHeight="35.0" prefWidth="103.0" text=" 停止挖掘" GridPane.columnIndex="1" /><HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-<children>
-                                <TextField fx:id="fx_maxVoteTime" maxWidth="50.0" prefHeight="23.0" prefWidth="167.0" text="8888" GridPane.columnIndex="2" GridPane.rowIndex="2" /><Label fx:id="lb_successDis" prefHeight="15.0" prefWidth="165.0" GridPane.columnIndex="2" />
-</children></HBox>
+                                <TextField fx:id="tf_grabIds" promptText="填写公司名包含的关键词,多个时,隔开" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                <Button mnemonicParsing="false" onAction="#startGrab" prefHeight="35.0" prefWidth="103.0" text="开始抓取" />
+                                <Button fx:id="fx_startGrabButtom" mnemonicParsing="false" onAction="#startGrab" prefHeight="35.0" prefWidth="103.0" text="开始挖掘" />
+                                <Button fx:id="fxstopGrabButtom" disable="true" mnemonicParsing="false" onAction="#stopGrab" prefHeight="35.0" prefWidth="103.0" text=" 停止挖掘" GridPane.columnIndex="1" />
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                    <children>
+                                        <TextField fx:id="fx_maxGrabTime" maxWidth="50.0" prefHeight="23.0" prefWidth="167.0" text="8888" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                        <Label fx:id="lb_successDis" prefHeight="15.0" prefWidth="165.0" GridPane.columnIndex="2" />
+                                    </children>
+                                </HBox>
                             </children>
                         </GridPane>
                     </children>

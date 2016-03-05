@@ -33,26 +33,25 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tf_GrabUrl.setText(ConfigManager.getGrabUrl());
-        tf_GrabIds.setText(ConfigManager.getProductionFlag());
-        tf_GrabUrl.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            ConfigManager.setGrabUrl(tf_GrabUrl.getText());
+        tf_grabIds.setText(ConfigManager.getProductionFlag());
+        tf_grabUrl.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            ConfigManager.setGrabUrl(tf_grabUrl.getText());
         });
-        tf_GrabIds.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
-            ConfigManager.setProductionFlag(tf_GrabIds.getText());
+        tf_grabIds.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            ConfigManager.setProductionFlag(tf_grabIds.getText());
         });
-//        tf_GrabUrl.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+//        tf_grabUrl.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 //
 //            @Override
 //            public void handle(MouseEvent event) {
-//                ConfigManager.setGrabUrl(tf_GrabUrl.getText());
+//                ConfigManager.setGrabUrl(tf_grabUrl.getText());
 //            }
 //        });
-//        tf_GrabIds.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+//        tf_grabIds.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 //
 //            @Override
 //            public void handle(MouseEvent event) {
-//                ConfigManager.setProductionFlag(tf_GrabIds.getText());
+//                ConfigManager.setProductionFlag(tf_grabIds.getText());
 //            }
 //        });
     }
@@ -82,9 +81,9 @@ public class HomeController implements Initializable {
     @FXML
     private TextField tx_maxS;
     @FXML
-    private TextField tf_GrabUrl;
+    private TextField tf_grabUrl;
     @FXML
-    private TextField tf_GrabIds;
+    private TextField tf_grabIds;
    public  static  HomeController instance;
    
     @FXML
@@ -101,7 +100,7 @@ public class HomeController implements Initializable {
                 ids.add("70");
             }
             String[] idsArr = null;
-            String idsString = tf_GrabIds.getText();
+            String idsString = tf_grabIds.getText();
             if (MailAddrGraber.isStop) {
                 return;
             }
@@ -116,7 +115,7 @@ public class HomeController implements Initializable {
             }
             log.error("开始抓取");
             ConfigParam cp=new ConfigParam();
-            cp.setGrabIds(ids).setGrabUrls(tf_GrabUrl.getText().split(",")).setMaxNum(Integer.valueOf(fx_maxGrabTime.getText())).setMaxSpeed(Integer.valueOf(tx_maxS.getText())).setMinSpeed(Integer.valueOf(tx_minS.getText()));
+            cp.setGrabIds(ids).setGrabUrls(tf_grabUrl.getText().split(",")).setMaxNum(Integer.valueOf(fx_maxGrabTime.getText())).setMaxSpeed(Integer.valueOf(tx_maxS.getText())).setMinSpeed(Integer.valueOf(tx_minS.getText()));
             MailAddrGraberFactory.getInstance("CnledwImpl").startGrab(cp);
                             }).start();
 //        fx_startGrabButtom.setText("抓取中....");
