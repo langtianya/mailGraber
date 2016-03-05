@@ -5,13 +5,14 @@
  */
 package com.wangzhe.ui;
 
-import com.wangzhe.service.impl.MailGraber;
+import com.wangzhe.beans.ConfigParam;
+import com.wangzhe.service.MailAddrGraber;
+import com.wangzhe.service.MailAddrGraberFactory;
 import com.wangzhe.util.ConfigManager;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,6 +21,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -27,39 +29,32 @@ import javafx.scene.control.TextField;
  */
 public class HomeController implements Initializable {
 
-    private org.apache.log4j.Logger log = org.apache.log4j.Logger.getLogger(HomeController.class.getName());
+    private  static  final Logger log = org.apache.log4j.Logger.getLogger(HomeController.class.getName());
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tf_voteUrl.setText(ConfigManager.getVoteUrl());
-        tf_voteIds.setText(ConfigManager.getProductionFlag());
-        tf_voteUrl.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                ConfigManager.setVoteUrl(tf_voteUrl.getText());
-            }
+        tf_GrabUrl.setText(ConfigManager.getGrabUrl());
+        tf_GrabIds.setText(ConfigManager.getProductionFlag());
+        tf_GrabUrl.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            ConfigManager.setGrabUrl(tf_GrabUrl.getText());
         });
-        tf_voteIds.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                ConfigManager.setProductionFlag(tf_voteIds.getText());
-            }
+        tf_GrabIds.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            ConfigManager.setProductionFlag(tf_GrabIds.getText());
         });
-//        tf_voteUrl.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+//        tf_GrabUrl.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 //
 //            @Override
 //            public void handle(MouseEvent event) {
-//                ConfigManager.setVoteUrl(tf_voteUrl.getText());
+//                ConfigManager.setGrabUrl(tf_GrabUrl.getText());
 //            }
 //        });
-//        tf_voteIds.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+//        tf_GrabIds.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
 //
 //            @Override
 //            public void handle(MouseEvent event) {
-//                ConfigManager.setProductionFlag(tf_voteIds.getText());
+//                ConfigManager.setProductionFlag(tf_GrabIds.getText());
 //            }
 //        });
-        return;
     }
 
     @FXML
@@ -69,13 +64,13 @@ public class HomeController implements Initializable {
     private CheckBox fx_checkShengFang;
 
     @FXML
-    private TextField fx_maxVoteTime;//最大投票多少
+    private TextField fx_maxGrabTime;//最大抓取多少
 
     @FXML
-    public Button fx_startVoteButtom;
+    public Button fx_startGrabButtom;
 
     @FXML
-    public Button fxstopVoteButtom;
+    public Button fxstopGrabButtom;
 
     @FXML
     public TextArea fx_txtareaLog;
@@ -87,56 +82,54 @@ public class HomeController implements Initializable {
     @FXML
     private TextField tx_maxS;
     @FXML
-    private TextField tf_voteUrl;
+    private TextField tf_GrabUrl;
     @FXML
-    private TextField tf_voteIds;
-
+    private TextField tf_GrabIds;
+   public  static  HomeController instance;
+   
     @FXML
-    public void startVote() {
-        MailGraber.isStop = false;
-        HomeController instance = this;
-        fxstopVoteButtom.setDisable(false);
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                List<String> ids = new ArrayList<String>(5);
-                if (fx_checkFengzhiyan.isSelected()) {
-                    ids.add("71");
-                }
-                if (fx_checkShengFang.isSelected()) {
-                    ids.add("70");
-                }
-                String[] idsArr = null;
-                String idsString = tf_voteIds.getText();
-                if (MailGraber.isStop) {
-                    return;
-                }
-                if (idsString != null) {
-                    idsArr = idsString.split(",|，");
-                }
-                for (String id : idsArr) {
-                    ids.add(id);
-                }
-                if (ids.size() == 0) {
-                    return;
-                }
-                log.error("开始投票");
-                new MailGraber().startGrab(ids, Integer.valueOf(fx_maxVoteTime.getText()), instance, Integer.valueOf(tx_minS.getText()), Integer.valueOf(tx_maxS.getText()), tf_voteUrl.getText());
+    public void startGrab() {
+        MailAddrGraber.isStop = false;
+         instance = this;
+        fxstopGrabButtom.setDisable(false);
+        new Thread(() -> {
+            List<String> ids = new ArrayList<>(5);
+            if (fx_checkFengzhiyan.isSelected()) {
+                ids.add("71");
             }
-        }).start();
-//        fx_startVoteButtom.setText("投票中....");
-        fx_startVoteButtom.setDisable(true);
+            if (fx_checkShengFang.isSelected()) {
+                ids.add("70");
+            }
+            String[] idsArr = null;
+            String idsString = tf_GrabIds.getText();
+            if (MailAddrGraber.isStop) {
+                return;
+            }
+            if (idsString != null) {
+                idsArr = idsString.split(",|，");
+            }
+            for (String id : idsArr) {
+                ids.add(id);
+            }
+            if (ids.size() == 0) {
+                return;
+            }
+            log.error("开始抓取");
+            ConfigParam cp=new ConfigParam();
+            cp.setGrabIds(ids).setGrabUrls(tf_GrabUrl.getText().split(",")).setMaxNum(Integer.valueOf(fx_maxGrabTime.getText())).setMaxSpeed(Integer.valueOf(tx_maxS.getText())).setMinSpeed(Integer.valueOf(tx_minS.getText()));
+            MailAddrGraberFactory.getInstance("CnledwImpl").startGrab(cp);
+                            }).start();
+//        fx_startGrabButtom.setText("抓取中....");
+        fx_startGrabButtom.setDisable(true);
 
-//        
     }
 
     @FXML
-    public void stopVote() {
-        MailGraber.isStop = true;
-        fx_startVoteButtom.setText("开始投票");
-        fxstopVoteButtom.setDisable(true);
-        fx_startVoteButtom.setDisable(false);
+    public void stopGrab() {
+        MailAddrGraber.isStop = true;
+        fx_startGrabButtom.setText("开始抓取");
+        fxstopGrabButtom.setDisable(true);
+        fx_startGrabButtom.setDisable(false);
     }
 
 }

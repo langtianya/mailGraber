@@ -6,19 +6,15 @@
 package com.wangzhe.service.impl;
 
 import com.wangzhe.beans.ProxyBean;
-import com.wangzhe.service.AbstractWebSiteOperater;
+import com.wangzhe.service.MailAddrGraber;
 import com.wangzhe.ui.HomeController;
 import com.wangzhe.util.ArrayUtils;
 import com.wangzhe.util.Commons;
-import com.wangzhe.util.ContainerUtils;
 import com.wangzhe.util.FileUtils;
-import com.wangzhe.util.HtmlUtils;
 import static com.wangzhe.util.HttpUtil.USERAGENT_KEY;
 import com.wangzhe.util.NumberUtils;
 import com.wangzhe.util.ProxyHttpUtil;
 import com.wangzhe.util.RegexUtil;
-import com.wangzhe.util.StringUtils;
-import com.wangzhe.util.UrlUtils;
 import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
@@ -35,7 +31,7 @@ import org.apache.log4j.Logger;
  *
  * @author ocq
  */
-public class FubuEmailCatch extends AbstractWebSiteOperater {
+public class FubuEmailCatch extends MailAddrGraber {
 
     private Logger log = Logger.getLogger(FubuEmailCatch.class.getName());
     public static boolean isStop = false;
@@ -344,18 +340,7 @@ public class FubuEmailCatch extends AbstractWebSiteOperater {
         return false;
     }
 
-    protected void getAndSaveEmail() {
-        //([^:：@，,\s>\]\"']{2,}@.*.com)//email\\]([^\\[]*)\\[/emai
-        webpageContent = webpageContent.replaceAll("<em>", "");//(<[^>(?:email)]*?>)
-        webpageContent = webpageContent.replaceAll("</em>", "");
-        List<String> emails = RegexUtil.getList("([a-z0-9A-Z_]{2,}@[^>]*.com)", webpageContent);
-        if (emails != null) {
-            final List<String> repeatEmail = ContainerUtils.removeRepeat(emails);
-            log.info("获得邮箱数量" + repeatEmail.size() + "邮箱是：" + repeatEmail);
-            FileUtils.writeToTxtFile("物流邮箱", repeatEmail);
-        }
-
-    }
+   
 
     private void saveProxyToFile(String fileName) {
         StringBuilder sb = new StringBuilder();
@@ -436,5 +421,10 @@ System.out.println(localeList[i].getDisplayCountry()+"="+localeList[i].getCountr
                 }
             });
         }
+    }
+
+    @Override
+    protected String[] getMailAddr(String[] urls, String[] keywords) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

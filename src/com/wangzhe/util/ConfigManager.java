@@ -13,7 +13,7 @@ import org.apache.log4j.Logger;
  */
 public class ConfigManager {
 
-    private static Logger log = Logger.getLogger(ConfigManager.class.getName());
+    private static final Logger log = Logger.getLogger(ConfigManager.class.getName());
 
     /**
      * 采用静态方法
@@ -100,15 +100,15 @@ public class ConfigManager {
      *
      * @return
      */
-    public static String getVoteUrl() {
-        return getProperties("setting_voteUrl");
+    public static String getGrabUrl() {
+        return getProperties("setting_GrabUrl");
     }
 
-    public static void setVoteUrl(String message) {
-        setProperties("setting_voteUrl", message);
+    public static void setGrabUrl(String message) {
+        setProperties("setting_GrabUrl", message);
     }
 
-    //////////投票作品信息
+    //////////抓取作品信息
     /**
      *
      * @return

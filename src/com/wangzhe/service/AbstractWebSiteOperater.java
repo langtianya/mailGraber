@@ -68,7 +68,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class AbstractWebSiteOperater {//extends Thread
 
-    private Logger log = Logger.getLogger(AbstractWebSiteOperater.class.getName());
+    protected Logger log = Logger.getLogger(getClass().getName());
 
     /**
      * 默认值，一个网站对应一个邮箱，如果一个邮箱可以用在一个网站多次，那么设置为true
