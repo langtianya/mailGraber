@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane stylesheets="@fxml_forums.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wangzhe.ui.SettingTabpaneController">
+    <children>
+        <TabPane id="tp_forums" fx:id="tp_SettingPane" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+            <tabs>
+                <Tab fx:id="tab_changeIp" text="换IP设置" />
+                <Tab fx:id="tab_system" text="系统设置" />
+                <Tab fx:id="tab_other" text="其他设置" />
+            </tabs>
+            <StackPane.margin>
+                <Insets />
+            </StackPane.margin>
+        </TabPane>
+        <Region style="-fx-background-color: rgba(0, 0, 0, 0.4);" visible="false" />
+    </children>
+</StackPane>

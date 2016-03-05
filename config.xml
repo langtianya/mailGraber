@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<config>
+<app>
+  <launcher>邮箱挖掘推广宝</launcher>
+  <ver>2.0.0.90</ver>
+  <url>http://127.0.0.1:8080</url>
+  <develop>1</develop>
+ </app>
+<setting>
+  <TutorialModel>false</TutorialModel>
+  <rb_text>notool</rb_text>
+  <tf_image_api>tf_gsa_api</tf_image_api>
+  <EngineType>baidu</EngineType>
+  <ProxyType>local</ProxyType>
+  <ProxyUrl>http://ns1.cloudssaas.com:7001/cms/api/getTempProxy.do</ProxyUrl>
+  <SiteSearchThreadCount>300</SiteSearchThreadCount>
+  <autoQuestion>true</autoQuestion>
+  <CaptchaMode>manual</CaptchaMode>
+  <ForumThreadCount>100</ForumThreadCount>
+  <LeaveMessage/>
+  <CaptchaPayType>captchaw</CaptchaPayType>
+  <QuestionMode>manual</QuestionMode>
+  <DeathUsername/>
+  <DeathPassword/>
+  <ImageUsername/>
+  <ImagePassword/>
+  <DecapUsername/>
+  <DecapPassword/>
+  <DecapAPIUrl/>
+  <DecapAPIPort>20</DecapAPIPort>
+  <GsaAPIUrl/>
+ <message/>
+<ForumThreadIntervalCount>0</ForumThreadIntervalCount>
+</setting>
+<setting_voteUrl>http://www.cnledw.com/</setting_voteUrl>
+<setting_productionFlag/>
+<setting_NetAccount>netaccount</setting_NetAccount>
+<setting_NetPassword>netapassword</setting_NetPassword>
+<setting_reDialTimes>10</setting_reDialTimes>
+<setting_disnetTime>10</setting_disnetTime>
+</config>

@@ -1,0 +1,893 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-11-13, 12:33:45
+    Author     : ocq
+*/
+root{
+    -fx-font-family: "Microsoft YaHei";
+}
+*{
+    // -fx-default: #e00;
+    -fx-button-hover: #15A0F5;//深青色
+}
+.Hyper-link{
+    -fx-border-width: 1px;
+}
+.hyperlink:visited .text{ 
+    -fx-underline: false;
+    -fx-fill: black;
+}
+.hyperlink:focused { //聚焦时
+                     -fx-border-color: transparent;
+                     -fx-border-style:none;
+}
+
+.hyperlink:hover{ 
+    -fx-underline: false;
+}
+//设置最小化按钮样式
+#bt_sys_to_min{
+    -fx-background-image: url("../images/toMin.png");
+}
+#bt_sys_to_min:hover{
+    -fx-background-image: url("../images/toMin.png");
+}
+//设置最大化按钮样式
+#bt_sys_to_max{
+    -fx-background-image: url("../images/toMax.png");
+}
+#bt_sys_to_max:hover{
+    -fx-background-image: url("../images/toMax.png");
+}
+//设置最关闭系统按钮样式
+#bt_close_sys{
+    -fx-background-image: url("../images/sysbtn_close_normal.png");
+}
+#bt_close_sys:hover{
+    -fx-background-image: url("../images/sysbtn_close_hover.png");
+}
+//头部标题面板最底层面板颜色
+#topTitlePane1{
+    -fx-background-color: #15a0f5;//有道蓝
+}
+
+
+
+
+//main.css样式
+#btn_wind_close{
+    -fx-background-image: url("../../resources/sysbtn_close_normal.png");
+}
+#btn_wind_close:hover{
+    -fx-background-image: url("../../resources/sysbtn_close_hover.png");
+}
+//最大化按钮
+#btn_wind_max{
+    -fx-background-image: url("../../resources/sysbtn_max_normal.png");
+}
+#btn_wind_min{
+    -fx-background-image: url("../../resources/sysbtn_min_normal.png");
+}
+#btn_wind_running{
+    -fx-background-image: url("../../resources/sysbtn_setting_normal.png");
+}
+//顶上操作按钮
+#title .button{
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 0px;
+    -fx-background-color: #15A0F5;//青色
+}
+#btn_up{
+    -fx-background-image: url("../../resources/btn_add.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 2px;
+}
+#btn_down{
+    -fx-background-image: url("../../resources/btn_minus.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 2px;
+}
+//按住和在上面的颜色
+#title .button:pressed,#title .button:hover{
+    -fx-background-color:#1085fd;//蓝色
+}
+#main_tab_pane .toggle-button,#title{
+    -fx-background-color: #15A0F5;//浅蓝
+}
+//选中后颜色
+#main_tab_pane .toggle-button:selected,#main_tab_pane .toggle-button:focused{
+    -fx-background-color: #ff7f00;//橘子色
+}
+//阴影
+#main_tab_pane .toggle-button:hover{
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+#main_tab_pane,#main_tab_flow
+{
+    -fx-background-color: #f3f3f3;
+}
+
+.button{
+    -fx-background-color: #ddd;//背景色
+    -fx-background-radius: 2px;
+    -fx-text-fill: #f1fcff;//字体颜色
+}
+.button:hover,#btn_log_show:hover,#btn_log_hide:hover{
+    -fx-background-color: #ff7f00;
+    -fx-background-radius: 2px;
+}
+.button:selected:focused{
+    -fx-background-color: -fx-button-hover;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 1;//嵌入
+    -fx-border-color: #1abc9c;//边框颜色
+    -fx-text-fill: #f1fcff;//字体颜色
+    -fx-background-radius: 2px;
+
+}
+.button:disabled{
+    -fx-background-color:gainsboro;
+}
+
+.tree-view{
+    -fx-border-color: #15A0F5;//浅绿色
+    -fx-background-insets: 0;
+}
+.tree-view:hover{
+    -fx-border-color: -fx-button-hover;
+}
+
+.list-view{
+    -fx-border-color: #15A0F5;
+    //-fx-background-color: #15A0F5;
+    -fx-background-insets: 0;
+}
+.list-view:hover{
+    -fx-border-color: -fx-button-hover;
+}
+.list-cell:even {//列表事件
+}
+
+.tree-cell:filled:selected:focused , .tree-cell:filled:selected ,.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background: -fx-button-hover;
+    -fx-border-color: transparent;//透明
+    -fx-border-insets: 0;
+}
+
+
+#sp_center{
+    -fx-border-insets: 0;
+    -fx-border-width: 0;
+}
+//进度条
+.progress-bar {
+    -fx-indeterminate-bar-length: 60;//模糊
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;//动画
+}
+.progress-bar > .bar {
+    -fx-background-color: -fx-button-hover;
+
+    -fx-background-insets: 0 0 0 0;
+    -fx-background-radius: 0;
+    //-fx-padding: 0.75em;
+    -fx-padding: 0.8em;
+}
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: linear-gradient(to left, transparent,-fx-button-hover);
+}
+.progress-bar > .track {
+    -fx-background-color: transparent;//进度条的背景颜色
+    -fx-background-insets: 0, 0 0 0 0, 0 0 0 0;
+    -fx-background-radius: 0, 0, 0; /* 10, 9, 8 */
+}
+.split-pane {
+    -fx-background-color:white;
+    -fx-padding:0 0 0 0; /* 0 3 0 3 */
+}
+.split-pane:horizontal .split-pane-divider {;
+                                            -fx-padding: 0 0.05em 0 0.05em; /* 0 3 0 3 */
+                                            -fx-background-color: #15A0F5;
+}
+
+.split-pane:vertical .split-pane-divider {
+
+    -fx-padding: 0 0.01em 0 0.01em; /* 0 3 0 3 */
+    -fx-background-color: #15A0F5;
+
+}
+
+#tv_log {
+    // -fx-border-color: white;
+    -fx-background-color: transparent;
+}
+
+#tv_log:hover{
+    -fx-border-color: transparent;
+}
+.table-view{
+    // -fx-table-cell-border-color: transparent;
+    -fx-border-color: #15A0F5;
+    -fx-background-insets: 0;
+}
+.table-view .column-header {//表头样式
+                            -fx-background-color: #15A0F5;
+}
+
+.table-view .table-row-cell {//表单元
+                             -fx-border-width: 1;
+}
+.table-row-cell:selected {
+    -fx-background-color: -fx-button-hover; 
+}
+.table-row-cell:selected .text {
+    // -fx-fill: white ;
+}
+
+.tab-pane:top *.tab-header-area {
+    //-fx-background-insets: 0, 0 0 1 0;
+    //-fx-background-insets: 0;
+    /* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
+    // -fx-padding: 0; /* overriden as 5 2 0 0 */
+    -fx-padding:5 0 -1 10;
+    // -fx-background-color: red;
+    //    -fx-background-insets: 15, 0 0 0 14;
+    /* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
+    // -fx-padding: 0.416667em 0.166667em 0.0em 0.0em; /* overriden as 5 2 0 0 */
+}
+.tab {
+    // -fx-padding: 3em 0.5em 3em 0.5em;
+}
+/*.tab-pane .tab-header-area .tab-header-background {
+    // -fx-opacity: 0;
+}
+.tab-pane
+{
+    //-fx-tab-min-width:90px;
+}
+
+.tab-pane.tab
+{
+    // -fx-background-color: #e6e6e6;
+}*/
+
+/*.tab-pane .tab:selected
+{
+    -fx-background-color: #3c3c3c;
+}
+
+.tab .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #828282;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.tab:selected .tab-label { 
+    -fx-alignment: CENTER;
+    -fx-text-fill: #96b946;
+}*/
+.tab-pane {
+    //  -fx-background-color: transparent;
+    // -fx-border-color: transparent;
+    -fx-tab-min-height: 20px; /* 22 *///3.0em
+    -fx-tab-max-height: 20px; /* 22 */
+    -fx-tab-min-width: 88px; /* 22 *///6.5em
+    -fx-tab-max-width:88px; /* 22 */
+    //-fx-padding: 0;
+    //-fx-background-insets: 0 1 1 0,1 2 0 1, 2 3 0 2;
+    // -fx-fill: white;
+    /*        -fx-background-color: transparent;
+        -fx-border-color: transparent;
+        -fx-tab-min-height: 2.8333em;  22 
+        -fx-tab-max-height: 2.8333em;  22 
+        -fx-tab-min-width: 3.8333em;  22 
+        -fx-tab-max-width:3.8333em;  22 */
+    //-fx-tab-min-height: 1.8333em; /* 22 */
+    // -fx-tab-max-height: 1.8333em; /* 22 */
+}
+#tab_setting {
+    -fx-tab-min-width: 70px; /* 22 *///6.5em
+    -fx-tab-max-width:70px; /* 22 */
+}
+.tab .tab-label {
+    //-fx-skin: "com.sun.javafx.scene.control.skin.LabelSkin";
+    -fx-background-color: transparent;    
+    -fx-alignment: CENTER;
+    -fx-text-fill:white;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Microsoft YaHei";
+}
+#tp_article {
+    -fx-tab-min-height: 20px; /* 22 *///3.0em
+    -fx-tab-max-height: 20px; /* 22 */
+}
+#tp_article .tab .tab-label{
+    -fx-text-fill:black;
+    -fx-font-size: 10pt;
+}
+#tp_article > .tab-header-area> .tab-header-background{
+    -fx-background-color: white;
+}
+#tp_article > .tab-header-area > .headers-region {
+    -fx-padding: 2px;
+}
+#tp_article > .tab-header-area > .headers-region > .tab {
+    -fx-border-radius: 2px;
+    -fx-background-radius: 2px;
+    -fx-background-color: white;
+    //-fx-padding: 2px;
+    -fx-border-color: #409eff;
+}
+#tp_article .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #409eff;
+}
+#tp_article .tab-header-area > .headers-region > .tab:selected .tab-label{
+    -fx-text-fill: white;
+}
+#tp_article:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+/*
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    //   -fx-border-color: red;
+    // -fx-background-color: red;
+    // -fx-background-insets: 0 1 1 0, 1 2 0 1, 2 3 0 2;
+    // -fx-background-insets: 0;
+    // -fx-border-radius: 10;
+    // -fx-border-color: none;
+    -fx-text-fill:black;
+    -fx-background-color: white;
+    -fx-border-color: white;
+}*/
+/*.tab-pane > .tab-header-area > .headers-region > .tab {
+    //   -fx-border-color: red;
+    // -fx-background-color: red;
+    // -fx-background-insets: 0 1 1 0, 1 2 0 1, 2 3 0 2;
+    // -fx-background-insets: 0;
+    // -fx-border-radius: 10;
+    // -fx-border-color: none;
+  //  -fx-text-fill:black;
+    -fx-background-color: #15A0F5;
+   // -fx-border-color: white;
+}*/
+
+/*.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    //-fx-border-width: 0;
+    // -fx-border-color:red;
+    // -fx-background-color: red;
+    //-fx-border-color: -fx-focus-color, -fx-faint-focus-color;
+    // -fx-border-insets: -4 -4 -6 -5, -2 -2 -5 -3;
+    //  -fx-border-radius: 10;  looks sharper if outer border has a tighter radius (2 instead of 3) 
+}*/
+.tab:selected .tab-label { 
+    -fx-text-fill: black;
+}
+.tab:hover { 
+    // -fx-text-fill: red;
+    // -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1.0), 10, 0, 0, 0);
+}
+.tab-pane >*.tab-header-area>*.tab-header-background,
+.tab-pane > .tab-header-area > .headers-region > .tab{
+    -fx-text-fill:#15A0F5;
+    -fx-background-color: #15A0F5;
+}
+.tab-pane >*.tab-header-area>*.tab-header-background{
+    -fx-text-fill:white;
+    -fx-background-color: #15A0F5;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:selected{
+    -fx-background-color: white;
+    -fx-border-radius: 2 2 0 0;
+    -fx-background-radius: 2 2 0 0;
+    -fx-padding: 0;
+}
+/*.tp_setting:left> .tab-header-area> .headers-region >.tab:left> .tab-container> .tab-label{ 
+
+    -fx-min-height:80px;
+    -fx-max-height:80px;
+    -fx-min-width:80px;
+    -fx-max-width:80px;
+    //-fx-tab-min-width: 80px;  22 //6.5em
+    //-fx-tab-max-width:80px;  22 
+    -fx-padding: 0;
+}*/
+/*
+.tab-pane>*.tab-header-area>*.headers-region:active{
+    -fx-background-color: red;
+}
+.tab-pane>*.tab-header-area>*.headers-region:selected{
+    -fx-background-color: red;
+}*/
+#tb_status{
+    -fx-background-color:#f3f3f3;
+    //   linear-gradient(#fafdfe, #e8f5fc),
+    //   linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
+    // -fx-background-insets: 0,1,2;
+    // -fx-background-radius: 3,2,1;
+    -fx-padding: 3 30 3 30;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+}
+#btn_rezireSE{
+    -fx-background-image: url("../../resources/resizeSE.png");
+    -fx-background-position: bottom;
+    -fx-background-repeat: no-repeat;
+    -fx-border-insets: 0px;
+    -fx-spacing: 0px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-background-color: #f3f3f3;
+}
+
+#btn_rezireSE:hover,#btn_rezireSE:focused,#btn_rezireSE:selected{
+    -fx-border-color: #f3f3f3;
+    -fx-background-color: #f3f3f3;
+    -fx-spacing: 0px;
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+}
+.table_page .pagination-control .control-box{
+    visibility:false;
+}
+.article_btn {
+    -fx-padding: 0;
+}
+#btn_log_hide{
+    -fx-background-color:#f3f3f3;
+    -fx-background-image: url("../../resources/btn_log_hide.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 2px;
+    /*    -fx-min-width:40px;
+        -fx-max-width:40px;
+        -fx-min-height:25px;
+        -fx-max-height:25px;
+        -fx-background-image: url("../../resources/log_min.png");*/
+
+}
+#btn_log_show{
+    -fx-background-color:#f3f3f3;
+    -fx-background-image: url("../../resources/btn_log_show.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-background-radius: 2px;
+    /*    -fx-min-width:40px;
+        -fx-max-width:40px;
+        -fx-min-height:25px;
+        -fx-max-height:25px;
+        -fx-background-image: url("../../resources/log_min.png");*/
+
+}
+#vb_home_auth,#vb_home_notify,#vb_home_update,#vb_home_qa{
+    -fx-border-radius: 2px;
+    -fx-border-color:  #15A0F5;
+}
+#vb_home_auth_title,#vb_home_notify_title,#vb_home_update_title,#vb_home_qa_title{
+    -fx-background-color:  #15A0F5;
+    -fx-border-radius: 2px 2px 0px 0px;
+}
+#btn_search{
+    -fx-background-image: url("../../resources/search.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    //-fx-background-color: #f3f3f3;
+    //-fx-border-color: red;
+}
+#tv_bank {
+    //-fx-table-cell-border-color: #00bfff;
+    -fx-border-color:  #15A0F5;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Microsoft YaHei";
+    //-fx-font-weight: bold;
+}
+#tv_bank  .table-cell {
+    -fx-alignment:CENTER;
+    //-fx-padding: 0.166667em; /* 2px, plus border adds 1px */
+    // -fx-background-color: transparent;
+    // -fx-border-color: transparent -fx-table-cell-border-color transparent transparent;
+    //  -fx-border-width: 0.083333em; /* 1 */
+    -fx-cell-size: 2.0em; /* 24 */
+    // -fx-text-fill: -fx-text-inner-color;
+}
+#tv_bank .table-row-cell {
+    -fx-cell-size: 60px;
+}
+#tv_bank .column-header .label {
+    -fx-text-fill: white;
+    //   -fx-fill: white;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Microsoft YaHei";
+    -fx-font-weight: bold;
+}
+#tv_bank .column-header {
+    -fx-cell-size: 60px;
+    -fx-background-color: #15A0F5;
+}
+#tv_bank .table-row-cell {
+    //-fx-border-width: 1;
+}
+.context-menu {
+    // -fx-background-color: #f3f3f3;  
+    -fx-min-width:100px;
+    // -fx-min-height: 200px; 
+}
+.context-menu .menu-item .label{
+    //      -fx-text-fill: #ababab;
+    -fx-font-weight: normal;
+    //  -fx-font-size: 12pt;
+}
+
+
+
+
+
+
+
+//dog.css
+.root {
+    // -fx-opacity: 0.9;
+
+}
+
+.modal-dialog-glass {
+    //-fx-effect: dropshadow(three-pass-box, derive(cadetblue, -20%), 10, 0, 4, 4); 
+    //-fx-background-color: derive(cadetblue, -20%); 
+    //-fx-background-insets:2; 
+    // -fx-background-radius: 2;
+}
+.button{
+    /*    -fx-background-radius: 0;
+        -fx-border-radius: 0;
+        -fx-background-color: 
+        -fx-border-color: #A1A1A1;
+        -fx-background-color: white;*/
+    -fx-background-color: #15A0F5;
+    -fx-background-radius: 2px;
+}
+
+.button:focused{
+    //-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1.0), 10, 0, 0, 0);
+    //  -fx-border-color: white;
+    -fx-background-color: #1abc9c;
+    -fx-background-radius: 2px;
+
+}
+//设置鼠标在按钮上的时候的颜色
+.button:hover{
+    -fx-background-color: #3498db;
+    -fx-text-fill: #f1fcff;
+    -fx-background-radius: 1px;
+}
+.button:disabled{//不可用按钮的颜色
+                 -fx-background-color:gray;
+}
+
+/*.modal-dialog-glass {
+    -fx-effect: dropshadow(three-pass-box, derive(cadetblue, -20%), 10, 0, 4, 4); 
+    //   -fx-background-color: derive(cadetblue, -20%); 
+    //-fx-background-insets: 10; 
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+}*/
+
+#MessageBox_btn_wind_close{
+    -fx-background-image: url("../../resources/window_close_1.png");
+    -fx-background-color: transparent;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    -fx-border-color: #1085fd;
+}
+/*#btn_close:hover{
+    -fx-background-image: url("../../resources/window_close_1.png");
+}*/
+#MessageBox_hb_title{
+    // -fx-background-color: transparent;
+    -fx-background-color: #1085fd;
+    -fx-border-radius: 5 5 0 0;
+    -fx-background-radius: 5 5 0 0;
+    //-fx-border-color:red;
+    //-fx-background-color: linear-gradient(from 50% 50% to 100% 100%, #1085fd, red);
+    // -fx-background-color: transparent;
+    // -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+    //  -fx-border-color: #1085fd;
+}
+
+
+#MessageBox_hb_bottom{
+    // -fx-background-color: #1085fd;
+    -fx-background-color: #f3f3f3;
+    -fx-border-radius: 0 0 5 5;
+    -fx-background-radius: 0 0 5 5;
+    // -fx-background-repeat: no-repeat;
+    //-fx-background-position: right;
+    //  -fx-border-color: #1085fd;
+}
+
+
+
+
+//home css
+
+#vb_home_auth,#vb_home_notify,#vb_home_update,#vb_home_qa{
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-border-color:  #15A0F5;
+}
+#vb_home_auth_title,#vb_home_notify_title,#vb_home_update_title,#vb_home_qa_title{
+    -fx-background-color:  #15A0F5;//#409eff
+    -fx-border-radius: 5 5 0 0;
+    -fx-background-radius: 5 5 0 0;
+}
+
+
+
+
+//setting css
+
+//控制tab的大小
+.tab-pane {
+    //  -fx-background-color: transparent;
+    // -fx-border-color: transparent;
+    -fx-tab-min-height: 20px; /* 22 *///3.0em
+    -fx-tab-max-height: 20px; /* 22 */
+    -fx-tab-min-width: 70px; /* 22 *///6.5em
+    -fx-tab-max-width:70px; /* 22 */
+    //-fx-padding: 0;
+    //-fx-background-insets: 0 1 1 0,1 2 0 1, 2 3 0 2;
+    // -fx-fill: white;
+    /*        -fx-background-color: transparent;
+        -fx-border-color: transparent;
+        -fx-tab-min-height: 2.8333em;  22 
+        -fx-tab-max-height: 2.8333em;  22 
+        -fx-tab-min-width: 3.8333em;  22 
+        -fx-tab-max-width:3.8333em;  22 */
+    //-fx-tab-min-height: 1.8333em; /* 22 */
+    // -fx-tab-max-height: 1.8333em; /* 22 */
+}
+.tab .tab-label {
+    //-fx-skin: "com.sun.javafx.scene.control.skin.LabelSkin";
+    -fx-background-color: transparent;    
+    -fx-alignment: CENTER;
+    -fx-text-fill:white;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Microsoft YaHei";
+}
+.tab:selected .tab-label { 
+    -fx-text-fill: black;
+}
+.tab:hover { 
+    // -fx-text-fill: red;
+    // -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,1.0), 10, 0, 0, 0);
+}
+.tab-pane >*.tab-header-area>*.tab-header-background,
+.tab-pane > .tab-header-area > .headers-region > .tab{
+    -fx-text-fill:#15A0F5;
+    -fx-background-color: #15A0F5;
+}
+.tab-pane >*.tab-header-area>*.tab-header-background{
+    -fx-text-fill:white;
+    -fx-background-color: #15A0F5;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:selected{
+    -fx-background-color: white;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0;
+}
+.tab-pane:top *.tab-header-area {
+    //-fx-background-insets: 0, 0 0 1 0;
+    //-fx-background-insets: 0;
+    /* -fx-padding: 0.416667em 0.166667em 0.0em 0.833em; /* 5 2 0 10 */
+    -fx-padding: 15 0 -1 0; /* overriden as 5 2 0 0 */
+    // -fx-background-color: red;
+}
+
+
+
+//sitesearch css
+
+#tb_search,#tb_search2{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #e6e7e8 transparent;
+}
+/*#hb_search{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #e6e7e8 transparent;
+}*/
+#btn_up{
+    -fx-border-color: transparent;
+    -fx-background-color: #e6e7e8
+}
+#btn_up:hover{
+    -fx-background-color: #A1A1A1;
+}
+#btn_down{
+    -fx-border-color: transparent;
+    -fx-background-color: #e6e7e8
+}
+#btn_down:hover{
+    -fx-background-color: #A1A1A1;
+}
+#btn_threadNum{
+    -fx-border-radius: 0px;
+}
+#btn_threadNum:focused{
+    // -fx-border-color: red;
+    -fx-border-color: transparent;
+    -fx-border-radius: 0px;
+}
+
+//massagebox css
+.root {
+    // -fx-background-color: #333333;
+    // -fx-padding: 1px;
+    -fx-font-size: 10pt;
+    -fx-font-family: "Micosoft YaHei";
+    // -fx-base: rgb(132, 145, 47);
+    // -fx-background: rgb(225, 228, 203);
+    // -fx-padding:1;
+    // -fx-border-insets:5;
+    //-fx-spacing: 5;
+    -fx-border-radius: 5 5 5 5;
+    -fx-background-radius:5 5 5 5;
+    // -fx-text-fill: white;
+    //  -fx-alignment: CENTER;
+    -fx-border-color: #00bfff;
+    // -fx-border-width:10;
+    //-fx-background-color: linear-gradient(#00B2EE,#BFEFFF);
+}
+
+.tool-bar {
+    -fx-background-color: transparent;
+}
+.text-area {
+    -fx-background-color: transparent;
+}
+
+#pane_title{
+    //-fx-background-color:#575757;
+    -fx-font-size: 13pt;
+    -fx-text-fill: #006464;
+    //-fx-background-color: transparent;
+}
+.progress-bar {
+    -fx-indeterminate-bar-length: 60;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;
+}
+.progress-bar > .bar {
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-accent, -7%), derive(-fx-accent, 0%), derive(-fx-accent, -3%), derive(-fx-accent, -9%) );
+    // -fx-background-insets: 3 3 4 3;
+    -fx-background-insets: 0 0 0 0;
+    /*-fx-background-radius: 0.583em; *//* 7 */
+    -fx-background-radius: 2;
+    -fx-padding: 0.75em;
+}
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: linear-gradient(to left, transparent, -fx-accent);
+}
+.progress-bar > .track {
+    -fx-background-color: 
+        -fx-shadow-highlight-color,
+        linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+        linear-gradient(to bottom, 
+        derive(-fx-control-inner-background, -7%),
+        derive(-fx-control-inner-background, 0%),
+        derive(-fx-control-inner-background, -3%),
+        derive(-fx-control-inner-background, -9%)
+        );
+    -fx-background-insets: 0, 0 0 1 0, 1 1 2 1;
+    -fx-background-radius: 4, 3, 2; /* 10, 9, 8 */
+}
+#window-close {
+    -fx-background-color: transparent;
+    //  -fx-border-color:transparent;
+    //-fx-background-repeat: no-repeat;
+    -fx-padding:0;
+    //-fx-border-insets:2;
+    -fx-spacing: 0;
+    //-fx-font-size: 1px;
+    // -fx-background-color: null;
+    //  -fx-background-image: url("/com/cloudssaas/resources/window_close.png");
+    //-fx-width:38px;
+    //  -fx-padding:5 18 5 18 ;
+}
+
+
+
+//启动界面 css
+.root {
+    // -fx-background-color: #333333;
+    // -fx-padding: 1px;
+    -fx-font-size: 11pt;
+    -fx-font-family: "Micosoft YaHei";
+    // -fx-base: rgb(132, 145, 47);
+    // -fx-background: rgb(225, 228, 203);
+    -fx-padding:1;
+    // -fx-border-insets:5;
+    //-fx-spacing: 5;
+    //-fx-border-radius: 5 5 5 5;
+    // -fx-background-radius:5 5 5 5;
+    // -fx-text-fill: white;
+    //  -fx-alignment: CENTER;
+    // -fx-border-color: #00bfff;
+    // -fx-border-width:10;
+    //-fx-background-color: linear-gradient(#00B2EE,#BFEFFF);
+}
+
+.tool-bar {
+    -fx-background-color: transparent;
+}
+.text-area {
+    -fx-background-color: transparent;
+}
+
+#pane_title{
+    //-fx-background-color:#575757;
+    -fx-font-size: 13pt;
+    -fx-text-fill: #006464;
+    //-fx-background-color: transparent;
+}
+#fancytext {
+    //-fx-font: 100px Tahoma;
+    //  -fx-fill: linear-gradient(from 0% 0% to 100% 200%, repeat, aqua 0%, red 50%);
+    // -fx-fill: linear-gradient(#00B2EE,#BFEFFF);//#00B2EE,#BFEFFF
+    //-fx-stroke: black;
+    -fx-stroke-width: 1;
+}
+.progress-bar {
+    -fx-indeterminate-bar-length: 60;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;
+}
+.progress-bar > .bar {
+    -fx-background-color: red;
+    // -fx-background-color:linear-gradient(to bottom, derive(-fx-accent, -7%), derive(-fx-accent, 0%), derive(-fx-accent, -3%), derive(-fx-accent, -9%) )
+    // -fx-background-insets: 3 3 4 3;
+    -fx-background-insets: 0 0 0 0;
+    /*-fx-background-radius: 0.583em; *//* 7 */
+    -fx-background-radius: 1;
+    //-fx-padding: 0.75em;
+    -fx-padding: 0.0em;
+}
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: linear-gradient(to left, transparent, -fx-accent);
+}
+.progress-bar > .track {
+    -fx-background-color: 
+        -fx-shadow-highlight-color,
+        linear-gradient(to bottom, derive(-fx-text-box-border, -10%), -fx-text-box-border),
+        linear-gradient(to bottom, 
+        derive(-fx-control-inner-background, -7%),
+        derive(-fx-control-inner-background, 0%),
+        derive(-fx-control-inner-background, -3%),
+        derive(-fx-control-inner-background, -9%)
+        );
+    -fx-background-insets: 0, 0 0 1 0, 0 0 0 0;
+    -fx-background-radius: 0, 0, 0; /* 10, 9, 8 */
+}
+
+

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="mailGraber.jnlp">
+  <information>
+    <title>mailGraber</title>
+    <vendor>Administrator</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <jfx:javafx-runtime version="2.2+" href="http://javadl.sun.com/webapps/download/GetFile/javafx-latest/windows-i586/javafx2.jnlp"/>
+  </resources>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="lib/LICENSE4J-Runtime-Library.jar" size="99964" download="eager" />
+    <jar href="lib/activemq-all-5.10.0.jar" size="6371237" download="eager" />
+    <jar href="lib/ant.jar" size="2019274" download="eager" />
+    <jar href="lib/antlr.jar" size="388562" download="eager" />
+    <jar href="lib/chardet.jar" size="36586" download="eager" />
+    <jar href="lib/commons-cli-1.2.jar" size="41123" download="eager" />
+    <jar href="lib/commons-codec-1.9.jar" size="263965" download="eager" />
+    <jar href="lib/commons-collections-3.2.1.jar" size="575389" download="eager" />
+    <jar href="lib/commons-collections4-4.0.jar" size="610259" download="eager" />
+    <jar href="lib/commons-compress-1.8.jar" size="364620" download="eager" />
+    <jar href="lib/commons-configuration-1.10.jar" size="362679" download="eager" />
+    <jar href="lib/commons-dbcp2-2.0.jar" size="167234" download="eager" />
+    <jar href="lib/commons-io-2.4.jar" size="185140" download="eager" />
+    <jar href="lib/commons-lang-2.6.jar" size="284220" download="eager" />
+    <jar href="lib/commons-lang3-3.2.1.jar" size="385091" download="eager" />
+    <jar href="lib/commons-logging-1.1.3.jar" size="62050" download="eager" />
+    <jar href="lib/commons-pool2-2.2.jar" size="108036" download="eager" />
+    <jar href="lib/cpdetector_1.0.7.jar" size="51526" download="eager" />
+    <jar href="lib/dog-api.jar" size="5831" download="eager" />
+    <jar href="lib/dom4j-1.6.1.jar" size="313898" download="eager" />
+    <jar href="lib/fastjson-1.1.42.jar" size="368145" download="eager" />
+    <jar href="lib/h2-1.3.175.jar" size="1638482" download="eager" />
+    <jar href="lib/httpclient-4.3.3.jar" size="589512" download="eager" />
+    <jar href="lib/httpcore-4.3.2.jar" size="282269" download="eager" />
+    <jar href="lib/httpmime-4.3.3.jar" size="37274" download="eager" />
+    <jar href="lib/javabase64-1.3.1.jar" size="4364" download="eager" />
+    <jar href="lib/javax.mail.jar" size="545362" download="eager" />
+    <jar href="lib/javax.servlet_2.5.jar" size="123407" download="eager" />
+    <jar href="lib/jsoup-1.7.3.jar" size="297387" download="eager" />
+    <jar href="lib/log4j-1.2.9.jar" size="352291" download="eager" />
+    <jar href="lib/poi-3.10-FINAL-20140208.jar" size="1950905" download="eager" />
+    <jar href="lib/poi-ooxml-3.10-FINAL-20140208.jar" size="1031421" download="eager" />
+    <jar href="lib/poi-ooxml-schemas-3.10-FINAL-20140208.jar" size="4946671" download="eager" />
+    <jar href="lib/rabbitmq-client.jar" size="394062" download="eager" />
+    <jar href="lib/smack-core-4.0.1.jar" size="270686" download="eager" />
+    <jar href="lib/smack-extensions-4.0.1.jar" size="566690" download="eager" />
+    <jar href="lib/smack-tcp-4.0.1.jar" size="19320" download="eager" />
+    <jar href="lib/thumbnailator-0.4.7.jar" size="97626" download="eager" />
+    <jar href="lib/velocity-1.7.jar" size="449505" download="eager" />
+    <jar href="lib/xmlbeans-2.3.0.jar" size="2666695" download="eager" />
+    <jar href="lib/xpp3-1.1.4c.jar" size="120069" download="eager" />
+    <jar href="mailGraber.jar" size="432317" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="mailGraber" >
+    <param name="requiredFXVersion" value="2.2+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="com.wangzhe.ui.WangzheFrameController"  name="mailGraber" />
+  <update check="always"/>
+</jnlp>

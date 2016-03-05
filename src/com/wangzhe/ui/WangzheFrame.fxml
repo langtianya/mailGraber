@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="764.0" stylesheets="@../resources/css/frame.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wangzhe.ui.WangzheFrameController">
+    <top>
+        <VBox prefHeight="113.0" prefWidth="764.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox id="topTitlePane1" prefHeight="31.0" prefWidth="800.0">
+                    <children>
+                        <HBox id="topTitlePane2" prefHeight="31.0" prefWidth="609.0">
+                            <children>
+                                <ImageView fitHeight="29.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true" />
+                                <Text id="topPane" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="邮箱挖掘宝" translateY="10.0" wrappingWidth="528.12109375">
+                                    <font>
+                                        <Font name="Microsoft YaHei Bold" size="16.0" />
+                                    </font>
+                                </Text>
+                            </children>
+                        </HBox>
+                        <HBox id="radius" alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="159.0">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                            <children>
+                                <Button id="bt_sys_to_min" mnemonicParsing="false" onAction="#toMin" prefHeight="30.0" prefWidth="46.0" />
+                                <Button id="bt_sys_to_max" mnemonicParsing="false" onAction="#toMax" prefHeight="30.0" prefWidth="46.0" />
+                                <Button id="bt_close_sys" mnemonicParsing="false" onAction="#onClose" prefHeight="30.0" prefWidth="46.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+                <HBox prefHeight="19.0" prefWidth="1024.0" />
+                <HBox prefHeight="60.0" prefWidth="962.0">
+                    <children>
+                        <HBox prefHeight="54.0" prefWidth="764.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#goHome" prefHeight="54.0" prefWidth="90.0" text="邮箱挖掘" />
+                                <Button mnemonicParsing="false" onAction="#goProxyList" prefHeight="54.0" prefWidth="90.0" text="代理" />
+                                <Button mnemonicParsing="false" onAction="#goToSetup" prefHeight="54.0" prefWidth="90.0" text="设置" />
+                                <Button mnemonicParsing="false" onAction="#gotoHelp" prefHeight="54.0" prefWidth="90.0" text="帮助" />
+                            </children>
+                        </HBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+    <center>
+        <HBox fx:id="hbox_center" prefHeight="218.0" prefWidth="764.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox prefHeight="205.0" prefWidth="422.0" />
+            </children>
+        </HBox>
+    </center>
+</BorderPane>
