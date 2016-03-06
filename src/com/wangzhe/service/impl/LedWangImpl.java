@@ -25,7 +25,7 @@ public class LedWangImpl extends MailAddrGraber {
     @Override
     protected String[] getMailAddr(ConfigParam cp) {
         appendLog("开始挖掘.....");
-        for (int i = 4950; i < 6188864; i++) {
+        for (int i = 1000000; i < 6188864; i++) {
             final String requestUrl = "http://www.cnledw.com/free/?id=" + i;
             doHttpGet(requestUrl);
             if (getUserHomeFail()) {
