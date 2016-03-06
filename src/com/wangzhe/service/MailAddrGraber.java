@@ -131,8 +131,15 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
     protected void writeToTxtFile(List<String> emails, String fileName) {
         if (emails != null) {
             final List<String> repeatEmail = ContainerUtils.removeRepeat(emails);
-            log.info("即将保存的邮箱数量" + repeatEmail.size() + "邮箱是：" + repeatEmail);
+            final String mailAddrMsg = "即将保存的邮箱数量" + repeatEmail.size() + "，邮箱是：" + repeatEmail;
+            log.info(mailAddrMsg);
+             appendLog(mailAddrMsg);
             FileUtils.writeToTxtFile(fileName, repeatEmail);
+        }
+    }
+     protected void writeToTxtFile(String content, String fileName) {
+        if (content != null) {
+           FileUtils.writeToTxtFile(fileName, content);
         }
     }
 

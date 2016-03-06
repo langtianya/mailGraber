@@ -8,6 +8,7 @@ package com.wangzhe.ui;
 import com.wangzhe.beans.ConfigParam;
 import com.wangzhe.service.MailAddrGraber;
 import com.wangzhe.service.MailAddrGraberFactory;
+import com.wangzhe.service.impl.LedWangImpl;
 import com.wangzhe.util.ConfigManager;
 import java.net.URL;
 import java.util.ArrayList;
@@ -116,7 +117,7 @@ public class HomeController implements Initializable {
             log.error("开始抓取");
             ConfigParam cp=new ConfigParam();
             cp.setGrabIds(ids).setGrabUrls(tf_grabUrl.getText().split(",")).setMaxNum(Integer.valueOf(fx_maxGrabTime.getText())).setMaxSpeed(Integer.valueOf(tx_maxS.getText())).setMinSpeed(Integer.valueOf(tx_minS.getText()));
-            MailAddrGraberFactory.getInstance("CnledwImpl").startGrab(cp);
+            MailAddrGraberFactory.getInstance(LedWangImpl.class.getSimpleName()).startGrab(cp);
                             }).start();
 //        fx_startGrabButtom.setText("抓取中....");
         fx_startGrabButtom.setDisable(true);
