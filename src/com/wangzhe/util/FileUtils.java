@@ -180,7 +180,8 @@ public class FileUtils {
     }
     
     public static String readTxtFile(String filePath, String encoding) {
-        return readTxtFile(new File(filePath+".txt"), encoding);
+        final String file = filePath+".txt";
+        return readTxtFile(new File(file), encoding);
     }
     
     public static String readTxtFile(File file) {
