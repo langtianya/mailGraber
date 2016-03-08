@@ -13,7 +13,6 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 
 /**
@@ -21,7 +20,7 @@ import org.apache.log4j.Logger;
  * @author ocq
  */
 public class FileUtils {
-
+    
     private static final Logger log = Logger.getLogger(FileUtils.class.getName());
 
     /**
@@ -94,7 +93,7 @@ public class FileUtils {
     public static String getFileName(String fileName) {
         return fileName.substring(0, fileName.lastIndexOf("."));
     }
-
+    
     public static File getFile(String fileUrl) {
         File saveFile = new File(fileUrl);
         if (!saveFile.exists()) {
@@ -102,7 +101,7 @@ public class FileUtils {
         }
         return saveFile;
     }
-
+    
     public static File getNewFileName(File file, String fileName) {
         return getNewFileName(file.getPath(), fileName);
     }
@@ -154,11 +153,11 @@ public class FileUtils {
     public static String getFileSuffix(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."));
     }
-
+    
     public static boolean saveTxtFile(String fileUrl, String body) {
         return saveTxtFile(new File(fileUrl), body);
     }
-
+    
     public static boolean saveTxtFile(File file, String body) {
         PrintWriter pw = null;
         try {
@@ -175,19 +174,19 @@ public class FileUtils {
         }
         return true;
     }
-
+    
     public static String readTxtFile(String filePath) {
         return readTxtFile(filePath, CharacterEnding.getFileCharacterEnding(filePath));
     }
-
+    
     public static String readTxtFile(String filePath, String encoding) {
-        return readTxtFile(new File(filePath), encoding);
+        return readTxtFile(new File(filePath+".txt"), encoding);
     }
-
+    
     public static String readTxtFile(File file) {
         return readTxtFile(file, CharacterEnding.getFileCharacterEnding(file));
     }
-
+    
     public static String readTxtFile(File file, String encoding) {
         StringBuilder sb = new StringBuilder();
         try {
@@ -210,14 +209,15 @@ public class FileUtils {
         }
         return sb.toString();
     }
-
+    
     public static List readTxtFileList(String filePath) {
         return readTxtFileList(filePath, CharacterEnding.getFileCharacterEnding(filePath));
     }
-
+    
     public static List readTxtFileList(String filePath, String encoding) {
         List<String> list = new ArrayList<>();
         try {
+            filePath+=".txt";
             File file = new File(filePath);
             if (file.isFile() && file.exists()) {
                 InputStreamReader read = null;
@@ -242,24 +242,24 @@ public class FileUtils {
         }
         return list;
     }
-
+    
     public static String getAvatarUrl() {
         File folder = new File(Constants.avatarUrl);
         File[] subfiles = folder.listFiles();
         return subfiles[NumberUtils.getRandomNumByMax(subfiles.length)].getName();
     }
-
+    
     public static String getPhotoUrl(String folderUrl) {
         File folder = new File(folderUrl);
         File[] subfiles = folder.listFiles();
         return subfiles[NumberUtils.getRandomNumByMax(subfiles.length)].getName();
     }
-
+    
     public static synchronized void writeToFile(String filePath, String content) {
         if (StringUtils.isOneEmpty(filePath, content)) {
             return;
         }
-
+        
         try {
             File file = new File(filePath);
             if (!file.exists()) {
@@ -269,16 +269,16 @@ public class FileUtils {
             out.write(content);
             out.flush();
             out.close();
-
+            
         } catch (IOException ex) {
             log.error(ex);
         }
     }
-
+    
     public static synchronized void writeLog(String fileName, String content) {
         writeToTxtFile("log/", fileName, content);
     }
-
+    
     public static synchronized void writeToTxtFile(String fileName, List<String> content) {
         if (content == null) {
             return;
@@ -299,8 +299,12 @@ public class FileUtils {
     public static synchronized void writeToTxtFile(String fileName, String content) {
         writeToTxtFile("", fileName, content);
     }
-
+    
     public static synchronized void writeToTxtFile(String fatherDir, String fileName, String content) {
+        writeToTxtFile(fatherDir, fileName, content, true);
+    }
+
+    public static synchronized void writeToTxtFile(String fatherDir, String fileName, String content, boolean isAppend) {
         if (StringUtils.isOneEmpty(fileName, content)) {
             return;
         }
@@ -314,19 +318,19 @@ public class FileUtils {
             }
             fileName = fatherDir.concat(fileName).concat(".txt");
             // 字节写入文件末尾处
-            FileOutputStream fos = new FileOutputStream(fileName, true);
+            FileOutputStream fos = new FileOutputStream(fileName, isAppend);
             fos.write(content.concat("\r\n").getBytes("UTF8"));
             fos.close();
         } catch (Exception ex) {
             log.error(ex);
         }
     }
-
+    
     public static void main(String[] args) {
         for (int i = 0; i < 10; i++) {
             FileUtils.writeToTxtFile("aa", "sksssssssss");
         }
-
+        
     }
-
+    
 }

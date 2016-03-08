@@ -8,6 +8,7 @@ package com.wangzhe.service.impl;
 import com.wangzhe.beans.ConfigParam;
 import com.wangzhe.service.MailAddrGraber;
 import com.wangzhe.util.Commons;
+import com.wangzhe.util.FileUtils;
 import com.wangzhe.util.NumberUtils;
 import com.wangzhe.util.RegexUtil;
 import java.util.List;
@@ -18,14 +19,19 @@ import java.util.List;
  */
 public class LedWangImpl extends MailAddrGraber {
  private static  final String MAIL_ADDR_RELATED = "log/"+LedWangImpl.class.getSimpleName()+"邮箱对应公司信息";
+  private static  final String PROGRESS_FILE = "log/"+LedWangImpl.class.getSimpleName()+"进度";
+ 
     public LedWangImpl() {
         siteUrl = "http://www.cnledw.com/";
     }
 
     @Override
     protected String[] getMailAddr(ConfigParam cp) {
+        ;
         appendLog("开始挖掘.....");
-        for (int i = 1000000; i < 6188864; i++) {
+        for (int i = Integer.valueOf(FileUtils.readTxtFile(PROGRESS_FILE).trim()); i < 886188864; i++) {
+            FileUtils.writeToTxtFile("", PROGRESS_FILE,String.valueOf(i),false);
+            
             final String requestUrl = "http://www.cnledw.com/free/?id=" + i;
             doHttpGet(requestUrl);
             if (getUserHomeFail()) {
