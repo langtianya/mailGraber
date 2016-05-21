@@ -1,4 +1,4 @@
 # mailGraber
-a tool get mail  address from internet
-
-https://github.com/langtianya/mailGraber/blob/master/index.jpg
+a tool get mail  address from internet.
+![](adls setting.jpg)
+![](index.jpg)
