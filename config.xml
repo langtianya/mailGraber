@@ -32,11 +32,11 @@
  <message/>
 <ForumThreadIntervalCount>0</ForumThreadIntervalCount>
 </setting>
-<setting_voteUrl>http://www.cnledw.com/</setting_voteUrl>
 <setting_productionFlag/>
 <setting_NetAccount>netaccount</setting_NetAccount>
 <setting_NetPassword>netapassword</setting_NetPassword>
 <setting_reDialTimes>10</setting_reDialTimes>
 <setting_disnetTime>10</setting_disnetTime>
+<setting_GrabUrl>http://www.zgbfw.com/</setting_GrabUrl>
 <setting_GrabUrl>http://www.qiyegu.com/</setting_GrabUrl>
 </config>

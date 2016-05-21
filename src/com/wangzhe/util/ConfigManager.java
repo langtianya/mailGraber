@@ -59,11 +59,13 @@ public class ConfigManager {
      * @return
      */
     public static String getProperties(String key) {
-        String str = config.getString(key);
-//        if (str == null) {
-//            str = "";
-//        }
-        return str;
+        String[] values=config.getStringArray(key);
+        StringBuilder valueSb=new StringBuilder();
+        for (String value : values) {
+            valueSb.append(",").append(value);
+        }
+
+        return valueSb.toString().substring(1);
     }
 
     public static String getVersion() {

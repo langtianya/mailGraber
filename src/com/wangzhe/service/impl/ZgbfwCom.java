@@ -22,11 +22,11 @@ public class ZgbfwCom extends MailAddrGraber {
 
             final String requestUrl = "http://www.zgbfw.com/shop/CompanyList.aspx?pn=1&page=" + i;
             doHttpGet(requestUrl);
-            List<String> companyUrls = RegexUtil.getList("href=[\"'](http://www.zgbfw.com/shop/[^\"']+)[\"']", webpageContent);
+            List<String> companyUrls = RegexUtil.getList("colspan=[\"']*3[\"']*><a href=[\"']*(http://www.zgbfw.com/shop/[^\"'\\s]+)[\"']*", webpageContent);
             for (String companyUrl : companyUrls) {
                 doHttpGet(companyUrl);
                 if (getUserHomeFail()) {
-                    log.info("用户：" + i + "不存在");
+                    log.info("用户：" + i + "不存在"); 
                     continue;
                 }
                 getAndSaveMailAddr(i, companyUrl, cp);

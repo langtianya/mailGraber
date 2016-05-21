@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -22,6 +23,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import org.apache.log4j.Logger;
 
 /**
@@ -34,27 +36,31 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
         tf_grabIds.setText(ConfigManager.getProductionFlag());
+        tf_grabUrl.setText(ConfigManager.getGrabUrl());
+        
         tf_grabUrl.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             ConfigManager.setGrabUrl(tf_grabUrl.getText());
         });
+        
         tf_grabIds.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
             ConfigManager.setProductionFlag(tf_grabIds.getText());
         });
-//        tf_grabUrl.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
-//
-//            @Override
-//            public void handle(MouseEvent event) {
-//                ConfigManager.setGrabUrl(tf_grabUrl.getText());
-//            }
-//        });
-//        tf_grabIds.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
-//
-//            @Override
-//            public void handle(MouseEvent event) {
-//                ConfigManager.setProductionFlag(tf_grabIds.getText());
-//            }
-//        });
+        
+        tf_grabUrl.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ConfigManager.setGrabUrl(tf_grabUrl.getText());
+            }
+        });
+        
+        tf_grabIds.addEventHandler(MouseEvent.MOUSE_EXITED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                ConfigManager.setProductionFlag(tf_grabIds.getText());
+            }
+        });
     }
 
     @FXML
@@ -116,7 +122,7 @@ public class HomeController implements Initializable {
             }
             log.error("开始抓取");
             ConfigParam cp = new ConfigParam();
-            final String[] siteUrls = tf_grabUrl.getText().split(",");
+            final String[] siteUrls = tf_grabUrl.getText().split(",|，");
             
             for (String siteUrl : siteUrls) {
 //                提交给线程池处理任务

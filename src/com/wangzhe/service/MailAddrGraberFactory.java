@@ -5,7 +5,7 @@ import org.apache.log4j.Logger;
 
 /**
  * 反射+工厂模式解决创建子类的创建
- *
+ *http://www.zgbfw.com/,http://www.qiyegu.com/
  * @author ocq
  */
 public class MailAddrGraberFactory {
