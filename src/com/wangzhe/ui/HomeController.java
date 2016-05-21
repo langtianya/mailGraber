@@ -8,7 +8,7 @@ package com.wangzhe.ui;
 import com.wangzhe.beans.ConfigParam;
 import com.wangzhe.service.MailAddrGraber;
 import com.wangzhe.service.MailAddrGraberFactory;
-import com.wangzhe.service.impl.LedWangImpl;
+import com.wangzhe.service.ThreadPool;
 import com.wangzhe.util.ConfigManager;
 import java.net.URL;
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ import org.apache.log4j.Logger;
  */
 public class HomeController implements Initializable {
 
-    private  static  final Logger log = org.apache.log4j.Logger.getLogger(HomeController.class.getName());
+    private static final Logger log = org.apache.log4j.Logger.getLogger(HomeController.class.getName());
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -85,12 +85,12 @@ public class HomeController implements Initializable {
     private TextField tf_grabUrl;
     @FXML
     private TextField tf_grabIds;
-   public  static  HomeController instance;
-   
+    public static HomeController instance;
+
     @FXML
     public void startGrab() {
         MailAddrGraber.isStop = false;
-         instance = this;
+        instance = this;
         fxstopGrabButtom.setDisable(false);
         new Thread(() -> {
             List<String> ids = new ArrayList<>(5);
@@ -115,10 +115,18 @@ public class HomeController implements Initializable {
                 return;
             }
             log.error("开始抓取");
-            ConfigParam cp=new ConfigParam();
-            cp.setGrabIds(ids).setGrabUrls(tf_grabUrl.getText().split(",")).setMaxNum(Integer.valueOf(fx_maxGrabTime.getText())).setMaxSpeed(Integer.valueOf(tx_maxS.getText())).setMinSpeed(Integer.valueOf(tx_minS.getText()));
-            MailAddrGraberFactory.getInstance(LedWangImpl.class.getSimpleName()).startGrab(cp);
-                            }).start();
+            ConfigParam cp = new ConfigParam();
+            final String[] siteUrls = tf_grabUrl.getText().split(",");
+            
+            for (String siteUrl : siteUrls) {
+//                提交给线程池处理任务
+                ThreadPool.submit(() -> {
+                    cp.setGrabIds(ids).setGrabUrls(siteUrl).setMaxNum(Integer.valueOf(fx_maxGrabTime.getText())).setMaxSpeed(Integer.valueOf(tx_maxS.getText())).setMinSpeed(Integer.valueOf(tx_minS.getText()));
+                    MailAddrGraberFactory.getInstanceByUrl(siteUrl).startGrab(cp);
+                });
+            }
+
+        }).start();
 //        fx_startGrabButtom.setText("抓取中....");
         fx_startGrabButtom.setDisable(true);
 

@@ -26,8 +26,8 @@ public class Constants {
     public static final String DEFAULT_ENCODE = UTF8;
     public static final String GBK = "GBK";
     public static final String GBK2312 = "GBK2312";
-
-    ;
+    //允许的线程池的线程数量
+    public static int siteTaskThreadCount = 500;
     //邮件激活
     //注册地址
     public final static String ACTIVE_REG_URL_FORM_EMAIL = "regurlFromEmail";
@@ -38,7 +38,8 @@ public class Constants {
     //api的邮箱和代理容器 用完记得清
     public static List<?> ApiMailList = new ArrayList<>();
     public static List<ProxyBean> ApiProxyList = new ArrayList<>();
-
+    //获取邮箱地址的通用正则
+    public static final String MAIL_ADDR_REGEX = "([a-z0-9A-Z_]{2,}@[^\\.]+\\.com)";
     //qq容器
     public static Map<String, String> QQMAP = new HashMap<>();
     //邮箱容器

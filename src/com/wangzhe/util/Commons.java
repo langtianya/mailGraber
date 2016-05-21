@@ -2,6 +2,7 @@ package com.wangzhe.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.UnknownHostException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import org.apache.log4j.Logger;
@@ -331,5 +332,22 @@ public class Commons {
             log.error(ex);
         }
         return result;
+    }
+     /**
+     * 判断指定值是否为空
+     * 
+     * @param obj
+     * @return
+     */
+    public static boolean isEmpty(Object obj) {
+        boolean result = null == obj;
+        result = (obj instanceof String) ? ((String) obj).isEmpty() : result;
+        result = (obj instanceof Collection) ? ((Collection<?>) obj).isEmpty() : result;
+        return result;
+    }
+     public static int getProgress(String progressFilePath) {
+        final String progressStr = FileUtils.readTxtFile(progressFilePath);
+        return Commons.isEmpty(progressStr) ? 1 : Integer.valueOf(progressStr.trim());
+                 
     }
 }

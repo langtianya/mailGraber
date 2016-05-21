@@ -9,7 +9,7 @@ dist/
 *.jar
 *.war
 *.ear
-*log.txt
-
+*.txt
+log/
 hs_err_pid*
 

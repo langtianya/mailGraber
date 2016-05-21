@@ -11,15 +11,16 @@ import com.wangzhe.util.ArrayUtils;
 import com.wangzhe.util.Commons;
 import com.wangzhe.util.FileUtils;
 import com.wangzhe.ui.HomeController;
+import com.wangzhe.util.Constants;
 import com.wangzhe.util.ContainerUtils;
 import static com.wangzhe.util.HttpUtil.USERAGENT_KEY;
+import com.wangzhe.util.NumberUtils;
 import com.wangzhe.util.ProxyHttpUtil;
 import com.wangzhe.util.RegexUtil;
 import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -31,6 +32,9 @@ import javafx.application.Platform;
  * @author ocq
  */
 public abstract class MailAddrGraber extends AbstractWebSiteOperater {
+
+    protected String mailAddrRelatedPath = "log/" + classSimpleName + "邮箱对应公司信息";
+    protected String progressFilePath = "log/" + classSimpleName + "进度";
 
     public static boolean isStop = false;
 //    private static MailAddrGraber instance;
@@ -76,7 +80,8 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
         int validProxyNum = 0;
         long time1 = System.currentTimeMillis();
         List<ProxyBean> successProxyList = new ArrayList<>();
-        log.info("挖掘中....2" + proxyList.size());
+        log.info("挖掘中...." + proxyList.size());
+         appendLog("开始挖掘.....");
         String[] mailAddrs = getMailAddr(cp);
 
         //遍历代理
@@ -103,7 +108,23 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
          return;
          }*/
     }
-
+    /**
+     * 获取并保存邮箱地址
+     * @param i 循环的下标
+     * @param requestUrl 请求地址
+     * @param cp 
+     */
+    protected void getAndSaveMailAddr(int i, final String requestUrl, ConfigParam cp) {
+        appendLog("开始分析用户：" + i + "的邮箱地址");
+        final List<String> emails = getEmailFromWebpageContent();
+        if (emails != null && emails.size() > 0) {
+            writeToTxtFile(emails);
+            writeToTxtFile(emails.toString() + "---" + requestUrl, mailAddrRelatedPath);
+        }
+        final int sleepTime = NumberUtils.getRandomNum(cp.getMinSpeed(), cp.getMaxSpeed());
+        Commons.sleep(sleepTime);
+        appendLog("休眠" + sleepTime + "毫秒秒后继续挖掘.....");
+    }
     /**
      *
      * @param cp
@@ -118,11 +139,10 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
      */
     protected List<String> getEmailFromWebpageContent() {
         //([^:：@，,\s>\]\"']{2,}@.*.com)//email\\]([^\\[]*)\\[/emai
-        webpageContent = webpageContent.replaceAll("<em>", "");//(<[^>(?:email)]*?>)
-        webpageContent = webpageContent.replaceAll("</em>", "");
-//        List<String> emails = ;
-        return RegexUtil.getList("([a-z0-9A-Z_]{2,}@[^>]*.com)", webpageContent);
+      //(<[^>(?:email)]*?>)
+        return RegexUtil.getList(Constants.MAIL_ADDR_REGEX, webpageContent);
     }
+    
 
     protected void writeToTxtFile(List<String> emails) {
         writeToTxtFile(emails, fileName);
@@ -133,13 +153,14 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
             final List<String> repeatEmail = ContainerUtils.removeRepeat(emails);
             final String mailAddrMsg = "即将保存的邮箱数量" + repeatEmail.size() + "，邮箱是：" + repeatEmail;
             log.info(mailAddrMsg);
-             appendLog(mailAddrMsg);
+            appendLog(mailAddrMsg);
             FileUtils.writeToTxtFile(fileName, repeatEmail);
         }
     }
-     protected void writeToTxtFile(String content, String fileName) {
+
+    protected void writeToTxtFile(String content, String fileName) {
         if (content != null) {
-           FileUtils.writeToTxtFile(fileName, content);
+            FileUtils.writeToTxtFile(fileName, content);
         }
     }
 
@@ -427,4 +448,10 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
             });
         }
     }
+
+    @Override
+    public void setSiteUrl(String siteUrl) {
+        super.setSiteUrl(siteUrl);
+    }
+
 }

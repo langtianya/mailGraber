@@ -70,6 +70,7 @@ public abstract class AbstractWebSiteOperater {//extends Thread
 
     protected Logger log = Logger.getLogger(getClass().getName());
 
+    protected String classSimpleName = getClass().getSimpleName();
     /**
      * 默认值，一个网站对应一个邮箱，如果一个邮箱可以用在一个网站多次，那么设置为true
      */
@@ -2283,7 +2284,7 @@ public abstract class AbstractWebSiteOperater {//extends Thread
     public static String patEncode = "charset=[\"']{0,1}([\\w-]+)";
 
     public String getWebpageContentFromConnent() {
-        webpageContent=null;
+        webpageContent = null;
         byte[] pageData = null;
         String tmpPageCharset = pageCharset;
         try {
@@ -2456,5 +2457,9 @@ public abstract class AbstractWebSiteOperater {//extends Thread
     //该方法仅调试用
     protected void userLocalProxy() {
         proxyBean = new ProxyBean("127.0.0.1", 8888);
+    }
+
+    public void setSiteUrl(String siteUrl) {
+        this.siteUrl = siteUrl;
     }
 }

@@ -52,7 +52,7 @@
     <jar href="lib/velocity-1.7.jar" size="449505" download="eager" />
     <jar href="lib/xmlbeans-2.3.0.jar" size="2666695" download="eager" />
     <jar href="lib/xpp3-1.1.4c.jar" size="120069" download="eager" />
-    <jar href="mailGraber.jar" size="429661" download="eager" />
+    <jar href="mailGraber.jar" size="436044" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="mailGraber" >
     <param name="requiredFXVersion" value="2.2+"/>

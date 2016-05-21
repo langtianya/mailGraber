@@ -38,7 +38,7 @@ public class FubuEmailCatch extends MailAddrGraber {
     public static boolean isStop = false;
 
     public FubuEmailCatch() {
-        siteUrl="www.fubu.com";
+        siteUrl="http://www.fubu.com/";
     }
 
     @Override
