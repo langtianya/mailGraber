@@ -20,14 +20,16 @@ public class QiyeguCom extends MailAddrGraber {
 
     @Override
     protected String[] getMailAddr(ConfigParam cp) {
-        ;
-       
-        for (int i =Commons.getProgress(progressFilePath); i < 886188864; i++) {
+
+        for (int i = Commons.getProgress(progressFilePath); i < 886188864; i++) {
             FileUtils.writeToTxtFile("", progressFilePath, String.valueOf(i), false);
 
             final String requestUrl = "http://www.qiyegu.com/company/search.php?kw=&vip=0&type=0&catid=0&mode=0&areaid=0&size=0&mincapital=&maxcapital=&x=68&y=21&page=" + i;
             doHttpGet(requestUrl);
             List<String> companyUrls = RegexUtil.getList("href=[\"'](http://[^\\.]+.qiyegu.com/)[\"'][^>]*><strong", webpageContent);
+            if (isRun(companyUrls)) {
+                break;
+            }
             for (String companyUrl : companyUrls) {
                 doHttpGet(companyUrl);
                 if (getUserHomeFail()) {
@@ -40,6 +42,8 @@ public class QiyeguCom extends MailAddrGraber {
         }
         return null;
     }
+
+    
 
     /**
      * 获取并保存邮箱

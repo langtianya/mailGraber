@@ -35,7 +35,9 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
 
     protected String mailAddrRelatedPath = "log/" + classSimpleName + "邮箱对应公司信息";
     protected String progressFilePath = "log/" + classSimpleName + "进度";
-
+    //连续多少次找不到结果就结束线程
+    protected int maxTryTimeForNoResult = 20;
+    protected int currentTryTimeForNoResult = 0;
     public static boolean isStop = false;
 //    private static MailAddrGraber instance;
     private static final int CLICK_SUB_URL_DEEP = 3;
@@ -76,12 +78,12 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
         ///下面的所有请求都是代理请求，可以把遍历做得简单点，但是为了日后考虑，现在分开
         //遍历每个代理，每个代理去打开一批网址
 //        for (String domainUrl : urlList) {
-        tryTime = 0;//成功次数
+        currentTryTimeForNoResult = 0;//成功次数
         int validProxyNum = 0;
         long time1 = System.currentTimeMillis();
         List<ProxyBean> successProxyList = new ArrayList<>();
         log.info("挖掘中...." + proxyList.size());
-         appendLog("开始挖掘.....");
+        appendLog("开始挖掘.....");
         String[] mailAddrs = getMailAddr(cp);
 
         //遍历代理
@@ -89,7 +91,7 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
          if (isStop) {
          break;
          }
-         if (tryTime > cp.getMaxNum()) {
+         if (currentTryTimeForNoResult > cp.getMaxNum()) {
          break;
          }
          proxyBean = proxyList.get(i);
@@ -108,11 +110,13 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
          return;
          }*/
     }
+
     /**
      * 获取并保存邮箱地址
+     *
      * @param i 循环的下标
      * @param requestUrl 请求地址
-     * @param cp 
+     * @param cp
      */
     protected void getAndSaveMailAddr(int i, final String requestUrl, ConfigParam cp) {
         appendLog("开始分析用户：" + i + "的邮箱地址");
@@ -125,6 +129,7 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
         Commons.sleep(sleepTime);
         appendLog("休眠" + sleepTime + "毫秒秒后继续挖掘.....");
     }
+
     /**
      *
      * @param cp
@@ -139,10 +144,9 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
      */
     protected List<String> getEmailFromWebpageContent() {
         //([^:：@，,\s>\]\"']{2,}@.*.com)//email\\]([^\\[]*)\\[/emai
-      //(<[^>(?:email)]*?>)
+        //(<[^>(?:email)]*?>)
         return RegexUtil.getList(Constants.MAIL_ADDR_REGEX, webpageContent);
     }
-    
 
     protected void writeToTxtFile(List<String> emails) {
         writeToTxtFile(emails, fileName);
@@ -453,5 +457,16 @@ public abstract class MailAddrGraber extends AbstractWebSiteOperater {
     public void setSiteUrl(String siteUrl) {
         super.setSiteUrl(siteUrl);
     }
-
+    //根据list判断是否需要继续运行线程爬取
+    protected boolean isRun(List<String> companyUrls) {
+        if (Commons.isEmpty(companyUrls)) {
+            currentTryTimeForNoResult++;
+            if (currentTryTimeForNoResult > maxTryTimeForNoResult) {
+                return false;
+            }
+        } else {
+            currentTryTimeForNoResult = 0;
+        }
+        return true;
+    }
 }
